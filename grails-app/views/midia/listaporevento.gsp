@@ -11,11 +11,22 @@
 		<asset:javascript src="enviomensagem.js"/>
 		<asset:stylesheet src="slider.css"/>
 		<title><g:message code="midia.list.label"/></title>
-	</head>
+	</head> 
 	<body>
 		<a href="#list-midia" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
 		
 		<div id="list-midia" class="content scaffold-list" role="main">
+			
+			<div class="eventos">
+				<sec:ifNotLoggedIn>
+					<g:form controller="midia" action="listaporevento" >
+						<p><g:message code="eventoscadastrados.label"/></p><g:select onchange="this.form.submit()" noSelection="['0':'Selecione um evento...']" value="${filtroevento}" name="filtroevento" optionValue="${{formatDate(format: 'dd/MM/yyyy', date: it.data) + ' - ' + it.nome}}" optionKey="id" from="${fotolog.Evento.list()}"/>
+					</g:form>
+				</sec:ifNotLoggedIn>
+				<sec:ifLoggedIn>
+					
+				</sec:ifLoggedIn>
+			</div><div class="clearer"></div>
 			
 			<g:if test="${eventoInstance}">
 			     <h1>${eventoInstance.nome}</h1>  

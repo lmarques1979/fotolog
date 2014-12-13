@@ -30,11 +30,21 @@ class MidiaController extends BaseController{
 		respond resultado, model:[midiaInstanceCount: resultado.totalCount, eventoInstance: evento , filtroevento:params.filtroevento]
 	}
 	
+	@Secured('permitAll')
+	def listavideo() {
+		
+	}
+	
+	@Secured('permitAll')
+	def listamusica() {
+		
+	}
+	
 	@Secured('permitAll') 
-	def listaporevento(Integer max) {
+	def listaporevento() {
 
 		def configuracoes = configuracaoParams
-		def evento = Evento.get(Long.valueOf(params.filtroevento).longValue())
+		def evento = Evento.get(Long.valueOf(params.filtroevento ? params.filtroevento : '0').longValue())
 		
 		def resultado = Midia.createCriteria().list () {
 			eq("evento" , evento)

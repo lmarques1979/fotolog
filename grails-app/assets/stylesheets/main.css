@@ -55,9 +55,10 @@ body {
 .eventos {
 	border:0px solid #fff;
 	height:25px;
-	display: block;
-	margin: 0 auto;
-	text-align:center;
+	position:relative;
+	float:left;
+	left:80px;
+	
 	
 }
 
@@ -153,6 +154,7 @@ img {
     color: #f8f8f8;
     margin: 0.8em 3.8em 1em;
     padding: 0 0.25em;
+    
 }
 
 .scaffold-list h1 {
@@ -170,6 +172,15 @@ img {
 	text-indent: -9999px;
 }
 
+/*Menu principal*/
+.menu{
+	position:relative;
+	left:60px;
+	bottom:10px;
+	display:block;
+	margin: 0 auto;
+	text-align: center;
+}
 /* NAVIGATION MENU */
 .nav {
 	padding: 0.5em 0.75em;
@@ -195,7 +206,7 @@ img {
 }
 
 .nav a , .nav a.midia, .nav a.tipomidia, .nav a.eventos , .nav a.configuracoes , .nav a.novo , .nav a.lista ,
-.nav a.mensagem , .nav a.moderar
+.nav a.mensagem , .nav a.moderar , .nav a.imagem , .nav a.video , .nav a.musica
 {
 	color: #fff;
 	display: block;
@@ -207,6 +218,19 @@ img {
 	font-size: 12px;
 	font-weight: bold;
 }
+
+.nav a.imagem {
+	background-image: url(../images/imagem.png);  
+}
+
+.nav a.video {
+	background-image: url(../images/video.png);  
+}
+
+.nav a.musica {
+	background-image: url(../images/musica.png);  
+}
+
 
 .nav a.moderar {
 	background-image: url(../images/moderar.png);  

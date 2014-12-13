@@ -40,19 +40,17 @@
 				<sec:ifNotLoggedIn>
 					<g:link class="login" controller="login" action="auth" ><asset:image src="admin.png"/></g:link>
 				</sec:ifNotLoggedIn>
-			</div>
+			</div> 
 			
-			<div class="eventos">
-				<sec:ifNotLoggedIn>
-					<g:form controller="midia" action="listaporevento" >
-						<p><g:message code="eventoscadastrados.label"/></p><g:select onchange="this.form.submit()" noSelection="['0':'Selecione um evento...']" value="${filtroevento}" name="filtroevento" optionValue="${{formatDate(format: 'dd/MM/yyyy', date: it.data) + ' - ' + it.nome}}" optionKey="id" from="${fotolog.Evento.list()}"/>
-					</g:form>
-				</sec:ifNotLoggedIn>
-				<sec:ifLoggedIn>
-					
-				</sec:ifLoggedIn>
-			</div>
-					
+			<div class="menu">
+				<div class="nav" role="navigation">
+					<ul>
+						<li><g:link class="imagem" controller="midia" action="listaporevento"><g:message code="imagem.label"/></g:link></li>
+						<li><g:link class="video"  controller="midia" action="listavideo"><g:message code="video.label"/></g:link></li>
+						<li><g:link class="musica" controller="midia" action="listamusica"><g:message code="musica.label"/></g:link></li>
+					</ul>
+				</div>
+			</div>		
 			<div class="conteudo">
 				<div class="centro">
 					<g:layoutBody/>
