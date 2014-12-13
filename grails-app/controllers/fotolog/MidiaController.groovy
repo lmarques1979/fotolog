@@ -44,11 +44,13 @@ class MidiaController extends BaseController{
 	def listaporevento() {
 
 		def configuracoes = configuracaoParams
+		def tipomidia = 1.longValue()
 		def evento = Evento.get(Long.valueOf(params.filtroevento ? params.filtroevento : '0').longValue())
 		
 		def resultado = Midia.createCriteria().list () {
 			eq("evento" , evento)
-			order('dateCreated', 'desc')
+			eq("tipomidia.id" , tipomidia)
+			order('dateCreated', 'asc')
 			order('evento', 'desc')
 			order('midia', 'asc')
 		}

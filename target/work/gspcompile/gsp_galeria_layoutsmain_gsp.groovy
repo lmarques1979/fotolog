@@ -104,38 +104,36 @@ printHtmlPart(9)
 invokeTag('ifNotLoggedIn','sec',42,[:],2)
 printHtmlPart(16)
 createTagBody(2, {->
-printHtmlPart(10)
-createTagBody(3, {->
+invokeTag('message','g',48,['code':("imagem.label")],-1)
+})
+invokeTag('link','g',48,['class':("imagem"),'controller':("midia"),'action':("listaporevento")],2)
 printHtmlPart(17)
-invokeTag('message','g',48,['code':("eventoscadastrados.label")],-1)
+createTagBody(2, {->
+invokeTag('message','g',49,['code':("video.label")],-1)
+})
+invokeTag('link','g',49,['class':("video"),'controller':("midia"),'action':("listavideo")],2)
+printHtmlPart(17)
+createTagBody(2, {->
+invokeTag('message','g',50,['code':("musica.label")],-1)
+})
+invokeTag('link','g',50,['class':("musica"),'controller':("midia"),'action':("listamusica")],2)
 printHtmlPart(18)
-invokeTag('select','g',48,['onchange':("this.form.submit()"),'noSelection':(['0':'Selecione um evento...']),'value':(filtroevento),'name':("filtroevento"),'optionValue':({formatDate(format: 'dd/MM/yyyy', date: it.data) + ' - ' + it.nome}),'optionKey':("id"),'from':(fotolog.Evento.list())],-1)
-printHtmlPart(10)
-})
-invokeTag('form','g',49,['controller':("midia"),'action':("listaporevento")],3)
-printHtmlPart(9)
-})
-invokeTag('ifNotLoggedIn','sec',50,[:],2)
-printHtmlPart(9)
-createClosureForHtmlPart(19, 2)
-invokeTag('ifLoggedIn','sec',53,[:],2)
+invokeTag('layoutBody','g',56,[:],-1)
+printHtmlPart(19)
+invokeTag('message','g',62,['code':("titulopagina.label")],-1)
 printHtmlPart(20)
-invokeTag('layoutBody','g',58,[:],-1)
+invokeTag('message','g',64,['code':("copyrigth.label")],-1)
 printHtmlPart(21)
-invokeTag('message','g',64,['code':("titulopagina.label")],-1)
-printHtmlPart(22)
-invokeTag('message','g',66,['code':("copyrigth.label")],-1)
-printHtmlPart(23)
 })
-invokeTag('captureBody','sitemesh',71,[:],1)
-printHtmlPart(24)
+invokeTag('captureBody','sitemesh',69,[:],1)
+printHtmlPart(22)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1418467941000L
+public static final long LAST_MODIFIED = 1418469419000L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'
