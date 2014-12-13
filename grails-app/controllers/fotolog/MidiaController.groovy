@@ -77,12 +77,26 @@ class MidiaController extends BaseController{
             return
         }		
 		
-		def f = request.getFile('arquivo')
-		if (!f.empty) {
-			def midia = fileUpload(f)
+		//Imagem
+		if(midiaInstance.tipomidia.id==1){
+			def f = request.getFile('arquivo')
+			if (!f.empty) {
+				def midia = fileUpload(f)
+				midiaInstance.midia = midia
+			}
+		}
+		//Url Video
+		if(midiaInstance.tipomidia.id==2){
 			midiaInstance.midia = midia
 		}
-
+		//Musica
+		if(midiaInstance.tipomidia.id==3){
+			def f = request.getFile('musica')
+			if (!f.empty) {
+				//upload musica
+				midiaInstance.midia = midia
+			}
+		}
         midiaInstance.save flush:true
 		
 		if (midiaInstance.hasErrors()) {

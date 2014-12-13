@@ -38,36 +38,31 @@ printHtmlPart(6)
 invokeTag('stylesheet','asset',15,['src':("application.css")],-1)
 printHtmlPart(1)
 invokeTag('javascript','asset',16,['src':("application.js")],-1)
-printHtmlPart(1)
-invokeTag('layoutHead','g',17,[:],-1)
 printHtmlPart(7)
+invokeTag('layoutHead','g',18,[:],-1)
+printHtmlPart(8)
 })
-invokeTag('captureHead','sitemesh',18,[:],1)
-printHtmlPart(7)
+invokeTag('captureHead','sitemesh',19,[:],1)
+printHtmlPart(8)
 createTagBody(1, {->
 printHtmlPart(1)
-printHtmlPart(8)
-invokeTag('image','asset',24,['src':("logofoto.png"),'alt':("Luiz Marques Fotolog"),'title':("Luiz Marques Fotolog")],-1)
 printHtmlPart(9)
+invokeTag('image','asset',25,['src':("logofoto.png"),'alt':("Luiz Marques Fotolog"),'title':("Luiz Marques Fotolog")],-1)
+printHtmlPart(10)
 createTagBody(2, {->
-printHtmlPart(10)
-createTagBody(3, {->
-invokeTag('image','asset',26,['src':("logout.png")],-1)
-})
-invokeTag('link','g',26,['class':("login"),'controller':("logout"),'action':("index"),'title':("Sair")],3)
-printHtmlPart(10)
-if(true && (sec.loggedInUserInfo(field: 'username') == 'admin')) {
 printHtmlPart(11)
-createTagBody(4, {->
-invokeTag('message','g',30,['code':("evento.label")],-1)
+createTagBody(3, {->
+invokeTag('image','asset',27,['src':("logout.png")],-1)
 })
-invokeTag('link','g',30,['class':("eventos"),'controller':("Evento"),'action':("index")],4)
+invokeTag('link','g',27,['class':("login"),'controller':("logout"),'action':("index"),'title':("Sair")],3)
 printHtmlPart(12)
-createTagBody(4, {->
-invokeTag('message','g',31,['code':("tipomidia.label")],-1)
-})
-invokeTag('link','g',31,['class':("tipomidia"),'controller':("TipoMidia"),'action':("index")],4)
+if(true && (sec.loggedInUserInfo(field: 'username') == 'admin')) {
 printHtmlPart(13)
+createTagBody(4, {->
+invokeTag('message','g',31,['code':("evento.label")],-1)
+})
+invokeTag('link','g',31,['class':("eventos"),'controller':("Evento"),'action':("index")],4)
+printHtmlPart(14)
 createTagBody(4, {->
 invokeTag('message','g',32,['code':("midia.label")],-1)
 })
@@ -89,51 +84,56 @@ invokeTag('message','g',35,['code':("configuracao.label")],-1)
 invokeTag('link','g',35,['class':("configuracoes"),'controller':("Configuracao"),'action':("index")],4)
 printHtmlPart(15)
 }
-printHtmlPart(9)
+printHtmlPart(10)
 })
 invokeTag('ifLoggedIn','sec',39,[:],2)
-printHtmlPart(9)
-createTagBody(2, {->
 printHtmlPart(10)
+createTagBody(2, {->
+printHtmlPart(11)
 createTagBody(3, {->
 invokeTag('image','asset',41,['src':("admin.png")],-1)
 })
 invokeTag('link','g',41,['class':("login"),'controller':("login"),'action':("auth")],3)
-printHtmlPart(9)
+printHtmlPart(10)
 })
 invokeTag('ifNotLoggedIn','sec',42,[:],2)
 printHtmlPart(16)
 createTagBody(2, {->
-invokeTag('message','g',48,['code':("imagem.label")],-1)
-})
-invokeTag('link','g',48,['class':("imagem"),'controller':("midia"),'action':("listaporevento")],2)
 printHtmlPart(17)
-createTagBody(2, {->
-invokeTag('message','g',49,['code':("video.label")],-1)
+createTagBody(3, {->
+invokeTag('message','g',49,['code':("imagem.label")],-1)
 })
-invokeTag('link','g',49,['class':("video"),'controller':("midia"),'action':("listavideo")],2)
-printHtmlPart(17)
-createTagBody(2, {->
-invokeTag('message','g',50,['code':("musica.label")],-1)
-})
-invokeTag('link','g',50,['class':("musica"),'controller':("midia"),'action':("listamusica")],2)
+invokeTag('link','g',49,['class':("imagem"),'controller':("midia"),'action':("listaporevento")],3)
 printHtmlPart(18)
-invokeTag('layoutBody','g',56,[:],-1)
-printHtmlPart(19)
-invokeTag('message','g',62,['code':("titulopagina.label")],-1)
-printHtmlPart(20)
-invokeTag('message','g',64,['code':("copyrigth.label")],-1)
-printHtmlPart(21)
+createTagBody(3, {->
+invokeTag('message','g',50,['code':("video.label")],-1)
 })
-invokeTag('captureBody','sitemesh',69,[:],1)
+invokeTag('link','g',50,['class':("video"),'controller':("midia"),'action':("listavideo")],3)
+printHtmlPart(18)
+createTagBody(3, {->
+invokeTag('message','g',51,['code':("musica.label")],-1)
+})
+invokeTag('link','g',51,['class':("musica"),'controller':("midia"),'action':("listamusica")],3)
+printHtmlPart(19)
+})
+invokeTag('ifNotLoggedIn','sec',55,[:],2)
+printHtmlPart(20)
+invokeTag('layoutBody','g',59,[:],-1)
+printHtmlPart(21)
+invokeTag('message','g',65,['code':("titulopagina.label")],-1)
 printHtmlPart(22)
+invokeTag('message','g',67,['code':("copyrigth.label")],-1)
+printHtmlPart(23)
+})
+invokeTag('captureBody','sitemesh',72,[:],1)
+printHtmlPart(24)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1418469419000L
+public static final long LAST_MODIFIED = 1418493461000L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

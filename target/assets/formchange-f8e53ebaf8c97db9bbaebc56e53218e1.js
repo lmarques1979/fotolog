@@ -1,0 +1,1 @@
+jQuery(document).ready(function(e){e("#tipomidia").change(function(){var t=e(this).val();if(t==1){e(".imagem").show();e(".video").hide();e(".musica").hide()}if(t==2){e(".imagem").hide();e(".video").show();e(".musica").hide()}if(t==3){e(".imagem").hide();e(".video").hide();e(".musica").show()}})})
