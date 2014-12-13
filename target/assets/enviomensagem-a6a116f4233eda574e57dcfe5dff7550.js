@@ -1,0 +1,1 @@
+jQuery(document).ready(function(e){e(".enviarmensagem").click(function(){var t=e(".enviomsg").css("display");if(t=="none"){e(".enviomsg").css("display","block")}else{e(".enviomsg").css("display","none")}})})
