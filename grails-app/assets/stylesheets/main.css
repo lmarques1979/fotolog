@@ -71,7 +71,7 @@ body {
 
 
 .cabecalho {
-	height:140px;
+	height:165px;
 	margin-bottom:10px;
 }
 
@@ -231,7 +231,6 @@ img {
 	background-image: url(../images/musica.png);  
 }
 
-
 .nav a.moderar {
 	background-image: url(../images/moderar.png);  
 }
@@ -251,6 +250,8 @@ img {
 .nav a.eventos {
 	background-image: url(../images/eventos.png); 
 	background-position: 0.7em 0.3em; 
+	margin-left:-80px;
+    margin-right:80px;
 }
 
 .nav a.midia {
@@ -738,3 +739,9 @@ tbody.tabelaenvio  td{
  .totalfotos{
  	display:none;
  }
+ 
+.video , .musica{
+ 	display:none;
+ }
+ 
+ 

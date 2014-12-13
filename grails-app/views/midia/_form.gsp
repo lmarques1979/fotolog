@@ -1,5 +1,4 @@
 <%@ page import="fotolog.Midia" %>
-
 <g:if test="${params.action == 'create'}">
 	<g:set var="evento" value="${session["evento.id"]}" />
 	<g:set var="tipomidia" value="${session["tipomidia.id"]}" />
@@ -10,6 +9,19 @@
 	<g:set var="tipomidia" value="${midiaInstance?.tipomidia?.id}" />
 </g:else>
 
+<div>
+	<div class="fieldcontain ${hasErrors(bean: midiaInstance, field: 'tipomidia', 'error')} required">
+		<label for="evento">
+			<g:message code="tipomidia.label" default="Evento" />
+			<span class="required-indicator">*</span>
+		</label>
+		<g:select id="tipomidia" name="tipomidia.id" from="${fotolog.TipoMidia.list()}" optionKey="id" optionValue="descricao" required="" value="${tipomidia}" class="many-to-one"/>
+	
+	</div>
+	
+		
+</div>
+
 <div class="fieldcontain ${hasErrors(bean: midiaInstance, field: 'evento', 'error')} required">
 	<label for="evento">
 		<g:message code="midia.evento.label" default="Evento" />
@@ -19,13 +31,35 @@
 
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: midiaInstance, field: 'midia', 'error')} ">
-	<label for="imagem">
-		<g:message code="midia.imagem.label" default="Imagem" />
-		
-	</label>
-	<input type="file" name="arquivo" value="${usuarioInstance?.midia}"/>
+<div class="imagem">
+	<div class="fieldcontain ${hasErrors(bean: midiaInstance, field: 'midia', 'error')} ">
+		<label for="imagem">
+			<g:message code="midia.imagem.label" default="Imagem" />
+			
+		</label>
+		<input type="file" name="arquivo" value="${usuarioInstance?.midia}"/>
+	
+	</div>
+</div>
 
+<div class="video">
+	<div class="fieldcontain ${hasErrors(bean: midiaInstance, field: 'midia', 'error')} ">
+		<label for="imagem">
+			<g:message code="midia.imagem.label" default="Imagem" />
+			
+		</label>
+		<g:textField name="midia" size="35"/>
+	</div>
+</div>
+
+<div class="musica">
+	<div class="fieldcontain ${hasErrors(bean: midiaInstance, field: 'midia', 'error')} ">
+		<label for="imagem">
+			<g:message code="midia.imagem.label" default="Imagem" />
+			
+		</label>
+		<input type="file" name="musica"/>
+	</div>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: midiaInstance, field: 'legenda', 'error')} ">
@@ -37,12 +71,5 @@
 
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: midiaInstance, field: 'tipomidia', 'error')} required">
-	<label for="evento">
-		<g:message code="tipomidia.label" default="Evento" />
-		<span class="required-indicator">*</span>
-	</label>
-	<g:select id="tipomidia" name="tipomidia.id" from="${fotolog.TipoMidia.list()}" optionKey="id" optionValue="descricao" required="" value="${tipomidia}" class="many-to-one"/>
 
-</div>
 

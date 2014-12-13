@@ -2,6 +2,7 @@
 <html>
 	<head>
 		<meta name="layout" content="main">
+		<asset:javascript src="formchange.js"/>
 		<g:set var="entityName" value="${message(code: 'midia.label', default: 'Foto')}" />
 		<title><g:message code="midia.create.label" /></title>
 	</head>
@@ -34,5 +35,6 @@
 				</fieldset>
 			</g:uploadForm> 
 		</div>
+	
 	</body>
 </html>

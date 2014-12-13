@@ -14,6 +14,7 @@
 		<link rel="apple-touch-icon" sizes="114x114" href="${assetPath(src: 'apple-touch-icon-retina.png')}">
   		<asset:stylesheet src="application.css"/>
 		<asset:javascript src="application.js"/>
+		
 		<g:layoutHead/>
 	</head>
 	<body>
@@ -23,12 +24,11 @@
 			<div class="cabecalho">
 				<asset:image src="logofoto.png" alt="Luiz Marques Fotolog" title="Luiz Marques Fotolog"/>
 				<sec:ifLoggedIn>
-					<g:link class="login" controller="logout" action="index" title="Sair"><asset:image src="logout.png"/></g:link>
+					<g:link class="login" controller="logout" action="index" title="Sair"><asset:image src="logout.png"/></g:link><div class="clearer"></div>
 					<g:if test="${sec.loggedInUserInfo(field: 'username') == 'admin'}">
 						<div class="nav" role="navigation">
 							<ul>
 								<li><g:link class="eventos" controller="Evento" action="index"><g:message code="evento.label"/></g:link></li>
-								<!--<li><g:link class="tipomidia" controller="TipoMidia" action="index"><g:message code="tipomidia.label"/></g:link></li>  -->
 								<li><g:link class="midia" controller="Midia" action="index"><g:message code="midia.label"/></g:link></li>
 								<li><g:link class="moderar" controller="Mensagem" action="moderar"><g:message code="mensagemmoderar.label"/></g:link></li>
 								<li><g:link class="mensagem" controller="Mensagem" action="index"><g:message code="mensagens.label"/></g:link></li>
@@ -40,17 +40,20 @@
 				<sec:ifNotLoggedIn>
 					<g:link class="login" controller="login" action="auth" ><asset:image src="admin.png"/></g:link>
 				</sec:ifNotLoggedIn>
-			</div> 
+			</div><div class="clearer"></div>
 			
-			<div class="menu">
-				<div class="nav" role="navigation">
-					<ul>
-						<li><g:link class="imagem" controller="midia" action="listaporevento"><g:message code="imagem.label"/></g:link></li>
-						<li><g:link class="video"  controller="midia" action="listavideo"><g:message code="video.label"/></g:link></li>
-						<li><g:link class="musica" controller="midia" action="listamusica"><g:message code="musica.label"/></g:link></li>
-					</ul>
-				</div>
-			</div>		
+			<sec:ifNotLoggedIn>
+				<div class="menu">
+					<div class="nav" role="navigation">
+						<ul>
+							<li><g:link class="imagem" controller="midia" action="listaporevento"><g:message code="imagem.label"/></g:link></li>
+							<li><g:link class="video"  controller="midia" action="listavideo"><g:message code="video.label"/></g:link></li>
+							<li><g:link class="musica" controller="midia" action="listamusica"><g:message code="musica.label"/></g:link></li>
+						</ul>
+					</div>
+				</div>	
+			</sec:ifNotLoggedIn>	
+			
 			<div class="conteudo">
 				<div class="centro">
 					<g:layoutBody/>
