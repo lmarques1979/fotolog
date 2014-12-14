@@ -87,14 +87,14 @@ class MidiaController extends BaseController{
 		}
 		//Url Video
 		if(midiaInstance.tipomidia.id==2){
-			midiaInstance.midia = midia
+			midiaInstance.midia = params.video
 		}
 		//Musica
 		if(midiaInstance.tipomidia.id==3){
 			def f = request.getFile('musica')
 			if (!f.empty) {
 				//upload musica
-				midiaInstance.midia = midia
+				
 			}
 		}
         midiaInstance.save flush:true

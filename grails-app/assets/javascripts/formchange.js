@@ -16,7 +16,26 @@ jQuery(document).ready(function ($) {
 			$(".imagem").hide();
 			$(".video").hide();
 			$(".musica").show();
+			}
+	});
+	
+	$("#tipomidiaedit").change(function() {
+		var tipomidia = $(this).val();
+		if(tipomidia==1){
+			$(".imagemedit").show();
+			$(".videoedit").hide();
+			$(".musicaedit").hide();
 		}
+		if(tipomidia==2){
+			$(".imagemedit").hide();
+			$(".videoedit").show();
+			$(".musicaedit").hide();
+		}
+		if(tipomidia==3){
+			$(".imagemedit").hide();
+			$(".videoedit").hide();
+			$(".musicaedit").show();
+			}
 	});
 	
 });
