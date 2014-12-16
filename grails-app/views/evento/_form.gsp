@@ -1,4 +1,6 @@
 <%@ page import="fotolog.Evento" %>
+<%@ page import="fotolog.TipoMidia" %>
+<g:set var="tipomidia" value="${midiaInstance?.tipomidia?.id}" />
 
 <div class="fieldcontain ${hasErrors(bean: eventoInstance, field: 'nome', 'error')} required">
 	<label for="nome">
@@ -7,6 +9,15 @@
 	</label>
 	<g:textField name="nome" required="" value="${eventoInstance?.nome}"/>
 
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: midiaInstance, field: 'tipomidia', 'error')} required">
+		<label for="evento">
+			<g:message code="tipomidia.label" default="Evento" />
+			<span class="required-indicator">*</span>
+		</label>
+		<g:select id="tipomidia" name="tipomidia.id" from="${fotolog.TipoMidia.list()}" optionKey="id" optionValue="descricao" required="" value="${tipomidia}" class="many-to-one"/>
+	
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: eventoInstance, field: 'descricao', 'error')} ">

@@ -7,7 +7,7 @@
 		<title><g:message code="midia.show.label"/></title>
 	</head>
 	<body>
-
+		
 		<a href="#show-midia" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
 		<div class="nav" role="navigation">
 			<ul>
@@ -39,15 +39,6 @@
 				</li>
 				</g:if>
 				
-				<g:if test="${midiaInstance?.tipomidia}">
-				<li class="fieldcontain">
-					<span id="evento-label" class="property-label"><g:message code="tipomidia.label" default="Evento" /></span>
-					
-						<span class="property-value" aria-labelledby="evento-label"><g:link controller="tipoMidia" action="show" id="${midiaInstance?.tipomidia?.id}">${midiaInstance?.tipomidia?.descricao}</g:link></span>
-					
-				</li>
-				</g:if>
-				
 				<g:if test="${midiaInstance?.evento}">
 				<li class="fieldcontain">
 					<span id="evento-label" class="property-label"><g:message code="midia.evento.label" default="Evento" /></span>
@@ -66,6 +57,24 @@
 				</li>
 				</g:if>
 			
+				<g:if test="${dadosMidiaInstance}">
+				<li class="fieldcontain">
+					<span id="evento-label" class="property-label"><g:message code="midia.largura.label" default="Evento" /></span>
+					
+						<span class="property-value" aria-labelledby="evento-label">${dadosMidiaInstance[0].largura}</span>
+					
+				</li>
+				</g:if>
+				
+				<g:if test="${dadosMidiaInstance}">
+				<li class="fieldcontain">
+					<span id="evento-label" class="property-label"><g:message code="midia.altura.label" default="Evento" /></span>
+					
+						<span class="property-value" aria-labelledby="evento-label">${dadosMidiaInstance[0].altura}</span>
+					
+				</li>
+				</g:if>
+								
 				
 			
 			</ol>

@@ -3,6 +3,8 @@
 <html>
 	<head>
 		<meta name="layout" content="main">
+		<asset:javascript src="onLoad.js"/>
+		<asset:javascript src="formchange.js"/>
 		<g:set var="entityName" value="${message(code: 'midia.label', default: 'Foto')}" />
 		<title><g:message code="midia.edit.label" /></title>
 	</head>
@@ -28,8 +30,9 @@
 			</g:hasErrors>
 			<g:uploadForm url="[resource:midiaInstance, action:'update']">
 				<g:hiddenField name="version" value="${midiaInstance?.version}" />
+				
 				<fieldset class="form">
-					<g:render template="form"/>
+					<g:render template="formEdit"/>
 				</fieldset>
 				<fieldset class="buttons">
 					<g:actionSubmit class="save" action="update" value="${message(code: 'default.button.update.label', default: 'Update')}" />

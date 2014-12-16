@@ -30,26 +30,44 @@ class MidiaController extends BaseController{
 		respond resultado, model:[midiaInstanceCount: resultado.totalCount, eventoInstance: evento , filtroevento:params.filtroevento]
 	}
 	
-	@Secured('permitAll')
+	@Secured('permitAll') 
 	def listavideo() {
 		
+		def configuracoes = configuracaoParams
+		def evento = Evento.get(Long.valueOf(params.filtrovideo ? params.filtrovideo : '0').longValue())
+		
+		def resultado = Midia.createCriteria().list () {
+			eq("evento" , evento)
+			order('dateCreated', 'asc')
+			order('evento', 'desc')
+			order('midia', 'asc') 
+		}
+		respond resultado, model:[midiaInstanceCount: resultado.size, eventoInstance: evento , filtrovideo:params.filtrovideo]
 	}
 	
 	@Secured('permitAll')
 	def listamusica() {
+		def configuracoes = configuracaoParams
+		def evento = Evento.get(Long.valueOf(params.filtromusica ? params.filtromusica : '0').longValue())
 		
+		def resultado = Midia.createCriteria().list () {
+			eq("evento" , evento)
+			order('dateCreated', 'asc')
+			order('evento', 'desc')
+			order('midia', 'asc')
+		}
+		respond resultado, model:[midiaInstanceCount: resultado.size, eventoInstance: evento , filtromusica:params.filtromusica]
+	
 	}
 	
 	@Secured('permitAll') 
 	def listaporevento() {
 
 		def configuracoes = configuracaoParams
-		def tipomidia = 1.longValue()
 		def evento = Evento.get(Long.valueOf(params.filtroevento ? params.filtroevento : '0').longValue())
 		
 		def resultado = Midia.createCriteria().list () {
 			eq("evento" , evento)
-			eq("tipomidia.id" , tipomidia)
 			order('dateCreated', 'asc')
 			order('evento', 'desc')
 			order('midia', 'asc')
@@ -60,7 +78,10 @@ class MidiaController extends BaseController{
 	@Secured(["authentication.name=='admin'"])
     def show(Midia midiaInstance) {
 		def configuracoes = configuracaoParams
-        respond midiaInstance
+		def resultado = DadosMidia.createCriteria().list() {
+			eq("midia" , midiaInstance)
+		}
+        respond midiaInstance,model:[dadosMidiaInstance: resultado]
     }
 
 	@Secured(["authentication.name=='admin'"])
@@ -78,7 +99,7 @@ class MidiaController extends BaseController{
         }		
 		
 		//Imagem
-		if(midiaInstance.tipomidia.id==1){
+		if(midiaInstance.evento.tipomidia.id==1){
 			def f = request.getFile('arquivo')
 			if (!f.empty) {
 				def midia = fileUpload(f)
@@ -86,27 +107,38 @@ class MidiaController extends BaseController{
 			}
 		}
 		//Url Video
-		if(midiaInstance.tipomidia.id==2){
+		if(midiaInstance.evento.tipomidia.id==2){
 			midiaInstance.midia = params.video
 		}
 		//Musica
-		if(midiaInstance.tipomidia.id==3){
+		if(midiaInstance.evento.tipomidia.id==3){
 			def f = request.getFile('musica')
 			if (!f.empty) {
 				//upload musica
 				
 			}
 		}
-        midiaInstance.save flush:true
+		
+		midiaInstance.save flush:true
 		
 		if (midiaInstance.hasErrors()) {
 			respond midiaInstance.errors, view:'create'
 			return
+		}else{
+			//Insiro DadosMidia
+			if(params.altura && params.largura){
+						
+				def dadosMidiaInstance = new DadosMidia()
+				dadosMidiaInstance.altura = Long.valueOf(params.altura).longValue()
+				dadosMidiaInstance.largura = Long.valueOf(params.largura).longValue()
+				dadosMidiaInstance.midia=midiaInstance
+				dadosMidiaInstance.save flush:true
+				
+			}
 		}
-
+		
 		if(params.tipo=="create"){
 			session["evento.id"] 	= midiaInstance.evento.id
-			session["tipomidia.id"] = midiaInstance.tipomidia.id
 			flash.message = message(code: 'default.created.message', args: [message(code: 'midia.label', default: 'Midia'), midiaInstance.id])
 			redirect (action:"create")
 		}else{
@@ -122,7 +154,10 @@ class MidiaController extends BaseController{
 
 	@Secured(["authentication.name=='admin'"])
     def edit(Midia midiaInstance) {
-        respond midiaInstance
+		def resultado = DadosMidia.createCriteria().list() {
+			eq("midia" , midiaInstance)
+		}
+        respond midiaInstance , model:[dadosMidiaInstance: resultado]
     }
 
     @Transactional
@@ -135,15 +170,24 @@ class MidiaController extends BaseController{
 		
 		def f = request.getFile('arquivo')
 		if (!f.empty) {
-			def deleteS3 = fileDelete(usuarioInstance.imagem)
+			def deleteS3 = fileDelete(midiaInstance.midia)
 			def imagem = fileUpload(f)
-			usuarioInstance.imagem = imagem 
+			midiaInstance.midia = imagem 
 		}
         midiaInstance.save flush:true
 
 		if (midiaInstance.hasErrors()) {
 			respond midiaInstance.errors, view:'edit'
 			return
+		}else{
+			
+				if(params.altura && params.largura){
+					
+					def dadosMidiaInstance = DadosMidia.get(Long.valueOf(params.dadosMidia.id).longValue())
+				   	dadosMidiaInstance.altura  = Long.valueOf(params.altura).longValue()
+					dadosMidiaInstance.largura = Long.valueOf(params.largura).longValue()
+					dadosMidiaInstance.save flush:true
+				}	
 		}
 		
         request.withFormat {

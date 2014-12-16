@@ -8,11 +8,11 @@ class TipoMidia {
 	Date 	dateCreated
 	Date 	lastUpdated
 	
-	static hasMany = [midias:Midia]	
+	static hasMany = [eventos: Evento , extensoespermitidas: ExtensoesPermitidas]
 	
-   static constraints = {
-		descricao(nullable:false,blank:false)
-		
+    static constraints = {
+		descricao(nullable:false,blank:false) 
+		extensoespermitidas(nullable:true,blank:true)
 	}
 	
 	static mapping = {

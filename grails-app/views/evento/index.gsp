@@ -27,6 +27,8 @@
 					
 						<g:sortableColumn property="descricao" title="${message(code: 'evento.descricao.label', default: 'Descricao')}" />
 					
+						<g:sortableColumn property="tipomidia" title="${message(code: 'evento.tipomidia.label', default: 'Descricao')}" />
+					
 						<g:sortableColumn property="data" title="${message(code: 'evento.data.label', default: 'Data')}" />
 					
 					</tr>
@@ -38,6 +40,8 @@
 						<td><g:link action="show" id="${eventoInstance.id}">${fieldValue(bean: eventoInstance, field: "nome")}</g:link></td>
 					
 						<td>${fieldValue(bean: eventoInstance, field: "descricao")}</td>
+						
+						<td>${eventoInstance?.tipomidia?.descricao}</td>
 					
 						<td><g:formatDate date="${eventoInstance.data}" format="dd/MM/yyyy" /></td>
 					

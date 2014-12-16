@@ -20,12 +20,9 @@
 			<div class="eventos">
 				<sec:ifNotLoggedIn>
 					<g:form controller="midia" action="listaporevento" >
-						<p><g:message code="eventoscadastrados.label"/></p><g:select onchange="this.form.submit()" noSelection="['0':'Selecione um evento...']" value="${filtroevento}" name="filtroevento" optionValue="${{formatDate(format: 'dd/MM/yyyy', date: it.data) + ' - ' + it.nome}}" optionKey="id" from="${fotolog.Evento.list()}"/>
+						<p><g:message code="eventoscadastrados.label"/></p><g:select onchange="this.form.submit()" noSelection="['0':'Selecione um evento...']" value="${filtroevento}" name="filtroevento" optionValue="${{formatDate(format: 'dd/MM/yyyy', date: it.data) + ' - ' + it.nome}}" optionKey="id" from="${fotolog.Evento.findAll("from Evento e where e.tipomidia.id=1")}"/>
 					</g:form>
 				</sec:ifNotLoggedIn>
-				<sec:ifLoggedIn>
-					
-				</sec:ifLoggedIn>
 			</div><div class="clearer"></div>
 			
 			<g:if test="${eventoInstance}">
@@ -34,9 +31,8 @@
 			     <div class="totalfotos" data-totalfotos="${midiaInstanceCount}"></div>
 			</g:if>
 			
-			
-			
 			<g:if test="${midiaInstanceCount>0}">
+				
 			<!-- Jssor Slider Begin -->
 		    <!-- You can move inline styles to css file or css block. -->
 		    <div id="slider1_container" style="position: relative; top: 0px; left: 0px; width: 800px;

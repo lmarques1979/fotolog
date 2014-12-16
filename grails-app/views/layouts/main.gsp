@@ -30,6 +30,7 @@
 							<ul>
 								<li><g:link class="eventos" controller="Evento" action="index"><g:message code="evento.label"/></g:link></li>
 								<li><g:link class="midia" controller="Midia" action="index"><g:message code="midia.label"/></g:link></li>
+								<li><g:link class="extensoes" controller="ExtensoesPermitidas" action="index"><g:message code="extensoes.label"/></g:link></li>
 								<li><g:link class="moderar" controller="Mensagem" action="moderar"><g:message code="mensagemmoderar.label"/></g:link></li>
 								<li><g:link class="mensagem" controller="Mensagem" action="index"><g:message code="mensagens.label"/></g:link></li>
 								<li><g:link class="configuracoes" controller="Configuracao" action="index"><g:message code="configuracao.label"/></g:link></li>

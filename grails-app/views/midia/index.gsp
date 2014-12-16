@@ -29,7 +29,6 @@
 			<thead>
 					<tr>
 						<th>${message(code: 'midia.midia.label', default: 'Nome')}</th>
-						<th>${message(code: 'tipomidia.label', default: 'Nome')}</th>
 						<th>${message(code: 'midia.evento.label', default: 'Nome')}</th>
 						<th>${message(code: 'midia.legenda.label', default: 'Nome')}</th>
 						
@@ -50,8 +49,6 @@
 						
 						</g:link></td>
 					
-						<td>${midiaInstance?.tipomidia?.descricao}</td>
-						
 						<td>${midiaInstance?.evento?.nome}</td>
 					
 						<td>${fieldValue(bean: midiaInstance, field: "legenda")}</td>

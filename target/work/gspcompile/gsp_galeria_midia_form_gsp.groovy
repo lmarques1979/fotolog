@@ -24,61 +24,99 @@ invokeTag('set','g',6,['var':("evento"),'value':(midiaInstance?.evento?.id)],-1)
 printHtmlPart(0)
 }
 printHtmlPart(2)
-expressionOut.print(hasErrors(bean: midiaInstance, field: 'tipomidia', 'error'))
+if(true && (params.action == 'create' || params.action == 'save')) {
 printHtmlPart(3)
-invokeTag('message','g',12,['code':("tipomidia.label"),'default':("Evento")],-1)
+expressionOut.print(hasErrors(bean: midiaInstance, field: 'tipomidia', 'error'))
 printHtmlPart(4)
-invokeTag('select','g',15,['id':("tipomidia"),'name':("tipomidia.id"),'from':(fotolog.TipoMidia.list()),'optionKey':("id"),'optionValue':("descricao"),'required':(""),'value':(usuarioInstance?.midia}),'class':("many-to-one")],-1)
+invokeTag('message','g',14,['code':("tipomidia.label"),'default':("Evento")],-1)
 printHtmlPart(5)
-expressionOut.print(hasErrors(bean: midiaInstance, field: 'evento', 'error'))
+invokeTag('select','g',17,['id':("tipomidia"),'name':("tipomidia.id"),'from':(fotolog.TipoMidia.list()),'optionKey':("id"),'optionValue':("descricao"),'required':(""),'value':(tipomidia),'class':("many-to-one")],-1)
 printHtmlPart(6)
-invokeTag('message','g',24,['code':("midia.evento.label"),'default':("Evento")],-1)
+}
 printHtmlPart(7)
-invokeTag('select','g',27,['id':("evento"),'name':("evento.id"),'from':(fotolog.Evento.list()),'optionKey':("id"),'optionValue':("nome"),'required':(""),'value':(evento),'class':("many-to-one")],-1)
+if(true && (params.action == 'edit')) {
+printHtmlPart(3)
+expressionOut.print(hasErrors(bean: midiaInstance, field: 'tipomidia', 'error'))
+printHtmlPart(4)
+invokeTag('message','g',27,['code':("tipomidia.label"),'default':("Evento")],-1)
+printHtmlPart(5)
+invokeTag('select','g',30,['id':("tipomidiaedit"),'name':("tipomidia.id"),'from':(fotolog.TipoMidia.list()),'optionKey':("id"),'optionValue':("descricao"),'required':(""),'value':(tipomidia),'class':("many-to-one")],-1)
+printHtmlPart(6)
+}
 printHtmlPart(8)
-if(true && (midiaInstance.tipomidia.id == 1)) {
+expressionOut.print(hasErrors(bean: midiaInstance, field: 'evento', 'error'))
 printHtmlPart(9)
-expressionOut.print(hasErrors(bean: midiaInstance, field: 'midia', 'error'))
+invokeTag('message','g',38,['code':("midia.evento.label"),'default':("Evento")],-1)
 printHtmlPart(10)
-invokeTag('message','g',35,['code':("midia.imagem.label"),'default':("Imagem")],-1)
+invokeTag('select','g',41,['id':("evento"),'name':("evento.id"),'from':(fotolog.Evento.list()),'optionKey':("id"),'optionValue':("nome"),'required':(""),'value':(evento),'class':("many-to-one")],-1)
 printHtmlPart(11)
-expressionOut.print(midiaInstance.midia)
+if(true && (params.action == 'edit')) {
 printHtmlPart(12)
-}
+expressionOut.print(hasErrors(bean: midiaInstance, field: 'evento', 'error'))
 printHtmlPart(13)
-if(true && (midiaInstance.tipomidia.id == 2)) {
+expressionOut.print(hasErrors(bean: midiaInstance, field: 'midia', 'error'))
 printHtmlPart(14)
-expressionOut.print(hasErrors(bean: midiaInstance, field: 'midia', 'error'))
-printHtmlPart(10)
-invokeTag('message','g',48,['code':("midia.imagem.label"),'default':("Imagem")],-1)
+invokeTag('message','g',50,['code':("midia.imagem.label"),'default':("Imagem")],-1)
 printHtmlPart(15)
-invokeTag('textField','g',51,['name':("video"),'size':("35"),'value':(midiaInstance.midia)],-1)
+}
+printHtmlPart(7)
+if(true && (params.action == 'edit')) {
 printHtmlPart(16)
-}
-printHtmlPart(13)
-if(true && (midiaInstance.tipomidia.id == 3)) {
-printHtmlPart(17)
 expressionOut.print(hasErrors(bean: midiaInstance, field: 'midia', 'error'))
+printHtmlPart(17)
+invokeTag('message','g',63,['code':("midia.imagem.label"),'default':("Imagem")],-1)
 printHtmlPart(18)
-invokeTag('message','g',60,['code':("midia.imagem.label"),'default':("Imagem")],-1)
+invokeTag('textField','g',66,['name':("video"),'size':("35")],-1)
 printHtmlPart(19)
-expressionOut.print(midiaInstance.midia)
-printHtmlPart(20)
 }
+printHtmlPart(7)
+if(true && (params.action == 'edit')) {
+printHtmlPart(20)
+expressionOut.print(hasErrors(bean: midiaInstance, field: 'midia', 'error'))
+printHtmlPart(17)
+invokeTag('message','g',75,['code':("midia.imagem.label"),'default':("Imagem")],-1)
 printHtmlPart(21)
-expressionOut.print(hasErrors(bean: midiaInstance, field: 'legenda', 'error'))
+}
+printHtmlPart(2)
+if(true && (params.action == 'create' || params.action == 'save')) {
 printHtmlPart(22)
-invokeTag('message','g',70,['code':("midia.legenda.label"),'default':("Legenda")],-1)
+expressionOut.print(hasErrors(bean: midiaInstance, field: 'midia', 'error'))
 printHtmlPart(23)
-invokeTag('textField','g',73,['name':("legenda"),'value':(midiaInstance?.legenda)],-1)
+invokeTag('message','g',88,['code':("midia.imagem.label"),'default':("Imagem")],-1)
 printHtmlPart(24)
+}
+printHtmlPart(7)
+if(true && (params.action == 'create' || params.action == 'save')) {
+printHtmlPart(25)
+expressionOut.print(hasErrors(bean: midiaInstance, field: 'midia', 'error'))
+printHtmlPart(23)
+invokeTag('message','g',101,['code':("midia.imagem.label"),'default':("Imagem")],-1)
+printHtmlPart(5)
+invokeTag('textField','g',104,['name':("video"),'size':("35")],-1)
+printHtmlPart(26)
+}
+printHtmlPart(7)
+if(true && (params.action == 'create' || params.action == 'save')) {
+printHtmlPart(27)
+expressionOut.print(hasErrors(bean: midiaInstance, field: 'midia', 'error'))
+printHtmlPart(23)
+invokeTag('message','g',113,['code':("midia.imagem.label"),'default':("Imagem")],-1)
+printHtmlPart(28)
+}
+printHtmlPart(8)
+expressionOut.print(hasErrors(bean: midiaInstance, field: 'legenda', 'error'))
+printHtmlPart(29)
+invokeTag('message','g',123,['code':("midia.legenda.label"),'default':("Legenda")],-1)
+printHtmlPart(30)
+invokeTag('textField','g',126,['name':("legenda"),'value':(midiaInstance?.legenda)],-1)
+printHtmlPart(31)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1418495570000L
+public static final long LAST_MODIFIED = 1418525670000L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

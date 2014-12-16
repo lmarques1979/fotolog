@@ -152,7 +152,7 @@ img {
 .content h1 {
 	border-bottom: 1px solid #cccccc;
     color: #f8f8f8;
-    margin: 0.8em 3.8em 1em;
+    margin: 0.8em 3.8em 0;
     padding: 0 0.25em;
     
 }
@@ -206,7 +206,7 @@ img {
 }
 
 .nav a , .nav a.midia, .nav a.tipomidia, .nav a.eventos , .nav a.configuracoes , .nav a.novo , .nav a.lista ,
-.nav a.mensagem , .nav a.moderar , .nav a.imagem , .nav a.video , .nav a.musica
+.nav a.mensagem , .nav a.moderar , .nav a.imagem , .nav a.video , .nav a.musica , .nav a.extensoes 
 {
 	color: #fff;
 	display: block;
@@ -217,6 +217,10 @@ img {
 	border-radius: 0.3em;
 	font-size: 12px;
 	font-weight: bold;
+}
+
+.nav a.extensoes {
+	background-image: url(../images/extensoes.png);  
 }
 
 .nav a.imagem {
@@ -321,6 +325,12 @@ fieldset,
 	color: #f8f8f8;
 	text-align: right;
 	width: 25%;
+}
+
+label.desc  {
+	text-align:left;
+	margin-left:3px;
+
 }
 
 .fieldcontain .property-label {
@@ -740,7 +750,7 @@ tbody.tabelaenvio  td{
  	display:none;
  }
  
-.video , .musica , .videoedit , .musicaedit{
+.video , .musica , .videoedit , .musicaedit , .imagemedit{
  	display:none;
  }
  

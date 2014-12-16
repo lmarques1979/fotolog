@@ -30,6 +30,15 @@
 					
 				</li>
 				</g:if>
+				
+				<g:if test="${eventoInstance?.tipomidia}">
+				<li class="fieldcontain">
+					<span id="nome-label" class="property-label"><g:message code="evento.tipomidia.label" default="Nome" /></span>
+					
+						<span class="property-value" aria-labelledby="nome-label">${eventoInstance.tipomidia.descricao}</span>
+					
+				</li>
+				</g:if>
 			
 				<g:if test="${eventoInstance?.descricao}">
 				<li class="fieldcontain">

@@ -1,0 +1,1 @@
+jQuery(document).ready(function(e){var t=e("#midiabanco").val();if(t==1){e(".imagemedit").show();e(".videoedit").hide();e(".musicaedit").hide()}if(t==2){e(".imagemedit").hide();e(".videoedit").show();e(".musicaedit").hide()}if(t==3){e(".imagemedit").hide();e(".videoedit").hide();e(".musicaedit").show()}})

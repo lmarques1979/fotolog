@@ -11,7 +11,17 @@
 		
 		<div id="list-midia" class="content scaffold-list" role="main">
 			
-			<h1>Em contrução</h1>
+			<div class="eventos">
+				<sec:ifNotLoggedIn>
+					<g:form controller="midia" action="listamusica" >
+						<p><g:message code="galeriamusica.label"/></p><g:select onchange="this.form.submit()" noSelection="['0':'Selecione um evento...']" value="${filtromusica}" name="filtromusica" optionValue="nome" optionKey="id" from="${fotolog.Evento.findAll("from Evento e where e.tipomidia.id=3")}"/>
+					</g:form>
+				</sec:ifNotLoggedIn>
+			</div><div class="clearer"></div>
+			
+			<g:if test="${eventoInstance}">
+			     <h1>${eventoInstance.nome}</h1>  
+			</g:if>
 			
 		</div>
 	

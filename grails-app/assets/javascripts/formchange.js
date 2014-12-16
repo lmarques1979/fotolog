@@ -1,7 +1,9 @@
 jQuery(document).ready(function ($) {
 	
-	$("#tipomidia").change(function() {
-		var tipomidia = $(this).val();
+	$("#eventocreate").change(function() {
+		
+		var tipomidia = $('option:selected',this).attr('data-tipomidia');
+		
 		if(tipomidia==1){
 			$(".imagem").show();
 			$(".video").hide();
@@ -19,8 +21,10 @@ jQuery(document).ready(function ($) {
 			}
 	});
 	
-	$("#tipomidiaedit").change(function() {
-		var tipomidia = $(this).val();
+	$("#eventoedit").change(function() {
+		
+		var tipomidia = $('option:selected',this).attr('data-tipomidia');
+		
 		if(tipomidia==1){
 			$(".imagemedit").show();
 			$(".videoedit").hide();
