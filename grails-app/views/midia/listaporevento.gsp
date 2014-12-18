@@ -51,8 +51,8 @@
         	<div id="slides" u="slides" style="background-color:#000 ; cursor: move; position: absolute; left: 0px; top: 0px; width: 800px; height: 500px; /*width: 800px; height: 356px;*/ overflow: hidden;">
            		<g:each in="${midiaInstanceList}" status="i" var="midiaInstance">
 					<div>
-						<asset:image class="fotogrande" data-fotoid="${midiaInstance?.id}" data-legenda="${midiaInstance?.legenda}" u="image" src="${midiaInstance?.midia }" />
-						<asset:image u="thumb" src="${midiaInstance?.midia }"/> 
+						<asset:image class="fotogrande" data-fotoid="${midiaInstance?.id}" data-legenda="${midiaInstance?.legenda}" u="image" src="${midiaInstance?.midia+'.'+midiaInstance?.extensao}" />
+						<asset:image u="thumb" src="${midiaInstance?.midia+'.'+midiaInstance?.extensao}"/> 
 				   	</div>
 				</g:each>
 				
@@ -129,8 +129,8 @@
 			</g:form>
 			
 			<div id="comentarios">
-				
-				
+					
+					
 			</div>	
 			
 											

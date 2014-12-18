@@ -9,7 +9,7 @@ class TipoMidia {
 	Date 	lastUpdated
 	
 	static hasMany = [eventos: Evento , extensoespermitidas: ExtensoesPermitidas]
-	
+		
     static constraints = {
 		descricao(nullable:false,blank:false) 
 		extensoespermitidas(nullable:true,blank:true)

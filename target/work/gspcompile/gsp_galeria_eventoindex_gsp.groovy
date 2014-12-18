@@ -52,7 +52,9 @@ invokeTag('sortableColumn','g',26,['property':("nome"),'title':(message(code: 'e
 printHtmlPart(11)
 invokeTag('sortableColumn','g',28,['property':("descricao"),'title':(message(code: 'evento.descricao.label', default: 'Descricao'))],-1)
 printHtmlPart(11)
-invokeTag('sortableColumn','g',30,['property':("data"),'title':(message(code: 'evento.data.label', default: 'Data'))],-1)
+invokeTag('sortableColumn','g',30,['property':("tipomidia"),'title':(message(code: 'evento.tipomidia.label', default: 'Descricao'))],-1)
+printHtmlPart(11)
+invokeTag('sortableColumn','g',32,['property':("data"),'title':(message(code: 'evento.data.label', default: 'Data'))],-1)
 printHtmlPart(12)
 loop:{
 int i = 0
@@ -63,28 +65,30 @@ printHtmlPart(14)
 createTagBody(3, {->
 expressionOut.print(fieldValue(bean: eventoInstance, field: "nome"))
 })
-invokeTag('link','g',38,['action':("show"),'id':(eventoInstance.id)],3)
+invokeTag('link','g',40,['action':("show"),'id':(eventoInstance.id)],3)
 printHtmlPart(15)
 expressionOut.print(fieldValue(bean: eventoInstance, field: "descricao"))
-printHtmlPart(15)
-invokeTag('formatDate','g',42,['date':(eventoInstance.data),'format':("dd/MM/yyyy")],-1)
 printHtmlPart(16)
+expressionOut.print(eventoInstance?.tipomidia?.descricao)
+printHtmlPart(15)
+invokeTag('formatDate','g',46,['date':(eventoInstance.data),'format':("dd/MM/yyyy")],-1)
+printHtmlPart(17)
 i++
 }
 }
-printHtmlPart(17)
-invokeTag('paginate','g',50,['total':(eventoInstanceCount ?: 0)],-1)
 printHtmlPart(18)
-})
-invokeTag('captureBody','sitemesh',53,[:],1)
+invokeTag('paginate','g',54,['total':(eventoInstanceCount ?: 0)],-1)
 printHtmlPart(19)
+})
+invokeTag('captureBody','sitemesh',57,[:],1)
+printHtmlPart(20)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1418330980000L
+public static final long LAST_MODIFIED = 1418649490000L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

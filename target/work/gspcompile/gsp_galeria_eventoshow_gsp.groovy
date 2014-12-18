@@ -61,44 +61,52 @@ invokeTag('fieldValue','g',29,['bean':(eventoInstance),'field':("nome")],-1)
 printHtmlPart(14)
 }
 printHtmlPart(15)
-if(true && (eventoInstance?.descricao)) {
+if(true && (eventoInstance?.tipomidia)) {
+printHtmlPart(12)
+invokeTag('message','g',36,['code':("evento.tipomidia.label"),'default':("Nome")],-1)
+printHtmlPart(13)
+expressionOut.print(eventoInstance.tipomidia.descricao)
+printHtmlPart(14)
+}
 printHtmlPart(16)
-invokeTag('message','g',36,['code':("evento.descricao.label"),'default':("Descricao")],-1)
+if(true && (eventoInstance?.descricao)) {
 printHtmlPart(17)
-invokeTag('fieldValue','g',38,['bean':(eventoInstance),'field':("descricao")],-1)
-printHtmlPart(14)
-}
-printHtmlPart(15)
-if(true && (eventoInstance?.data)) {
+invokeTag('message','g',45,['code':("evento.descricao.label"),'default':("Descricao")],-1)
 printHtmlPart(18)
-invokeTag('message','g',45,['code':("evento.data.label"),'default':("Data")],-1)
-printHtmlPart(19)
-invokeTag('formatDate','g',47,['format':("dd/MM/yyyy"),'date':(eventoInstance?.data)],-1)
+invokeTag('fieldValue','g',47,['bean':(eventoInstance),'field':("descricao")],-1)
 printHtmlPart(14)
 }
+printHtmlPart(16)
+if(true && (eventoInstance?.data)) {
+printHtmlPart(19)
+invokeTag('message','g',54,['code':("evento.data.label"),'default':("Data")],-1)
 printHtmlPart(20)
-createTagBody(2, {->
+invokeTag('formatDate','g',56,['format':("dd/MM/yyyy"),'date':(eventoInstance?.data)],-1)
+printHtmlPart(14)
+}
 printHtmlPart(21)
-createTagBody(3, {->
-invokeTag('message','g',56,['code':("default.button.edit.label"),'default':("Edit")],-1)
-})
-invokeTag('link','g',56,['class':("edit"),'action':("edit"),'resource':(eventoInstance)],3)
+createTagBody(2, {->
 printHtmlPart(22)
-invokeTag('actionSubmit','g',57,['class':("delete"),'action':("delete"),'value':(message(code: 'default.button.delete.label', default: 'Delete')),'onclick':("return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');")],-1)
-printHtmlPart(23)
+createTagBody(3, {->
+invokeTag('message','g',65,['code':("default.button.edit.label"),'default':("Edit")],-1)
 })
-invokeTag('form','g',59,['url':([resource:eventoInstance, action:'delete']),'method':("DELETE")],2)
+invokeTag('link','g',65,['class':("edit"),'action':("edit"),'resource':(eventoInstance)],3)
+printHtmlPart(23)
+invokeTag('actionSubmit','g',66,['class':("delete"),'action':("delete"),'value':(message(code: 'default.button.delete.label', default: 'Delete')),'onclick':("return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');")],-1)
 printHtmlPart(24)
 })
-invokeTag('captureBody','sitemesh',62,[:],1)
+invokeTag('form','g',68,['url':([resource:eventoInstance, action:'delete']),'method':("DELETE")],2)
 printHtmlPart(25)
+})
+invokeTag('captureBody','sitemesh',71,[:],1)
+printHtmlPart(26)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1418330980000L
+public static final long LAST_MODIFIED = 1418653851000L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

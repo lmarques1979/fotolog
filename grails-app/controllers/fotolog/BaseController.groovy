@@ -1,20 +1,15 @@
 package fotolog
-import utils.*
-import com.amazonaws.services.s3.model.*
+
 import grails.plugin.springsecurity.annotation.Secured
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
+import utils.*
 
-@Transactional(readOnly = true)
+@Transactional(readOnly = true) 
 @Secured("isAuthenticated()")     
 class BaseController{
-    
-	def configurationService
-	def springSecurityService
-	def amazonWebService
 	
-	def bucket  = 'fotologlmdcm'
-	def pasta 	= 'assets/' 
+	def springSecurityService
 	
 	def enviaEmail(def destinatario , def assunto , def mensagem, def remetente, def conteudomensagem){
 		
@@ -25,22 +20,7 @@ class BaseController{
 					subject assunto
 					html msgfinal
 		}
-	}
-	
-	def fileUpload(def f){
-		def nomearquivo = (new Date()).getTime() + "_" + f.getOriginalFilename()
-		File file = StreamUtil.stream2file(nomearquivo, f.getInputStream())
-		amazonWebService.s3.putObject(new PutObjectRequest(bucket, pasta + nomearquivo , file).withCannedAcl(CannedAccessControlList.PublicRead))
-		
-		return nomearquivo
-	}
-	
-	def fileDelete(def nomearquivo){
-		
-		if (nomearquivo!=null){
-			amazonWebService.s3.deleteObject(bucket, pasta+nomearquivo)
-		}
-	}
+	}	
 	
 	def getConfiguracaoParams(){
 		

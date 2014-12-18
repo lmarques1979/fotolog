@@ -1,6 +1,9 @@
 <%@ page import="fotolog.Evento" %>
 <%@ page import="fotolog.TipoMidia" %>
-<g:set var="tipomidia" value="${midiaInstance?.tipomidia?.id}" />
+
+<g:if test="${eventoInstance?.tipomidia?.id}">
+	<g:set var="tipomidia" value="${eventoInstance?.tipomidia?.id}" />
+</g:if>
 
 <div class="fieldcontain ${hasErrors(bean: eventoInstance, field: 'nome', 'error')} required">
 	<label for="nome">

@@ -152,7 +152,7 @@ img {
 .content h1 {
 	border-bottom: 1px solid #cccccc;
     color: #f8f8f8;
-    margin: 0.8em 3.8em 0;
+    margin: 2em 3.8em 0.7em;
     padding: 0 0.25em;
     
 }
@@ -754,4 +754,41 @@ tbody.tabelaenvio  td{
  	display:none;
  }
  
- 
+table.audio{
+    border-collapse: collapse;
+    border:0;
+    margin:1em auto;
+    width: 800px;
+}
+
+table.audio td{
+    border:0 solid #fff;
+    text-align:left;
+    padding-left:0;
+}
+
+table.audio th{
+    text-align:center;
+    border:0px solid #fff;
+}
+
+hr{
+	width:780px;
+	margin-left:80px;
+}
+
+#videos .legenda{
+	position:relative;
+	top:40px;
+	color:#fff;
+}
+
+#videos .iframevideo{
+	display:block;
+	margin:50px auto 10px;
+	text-align: center;
+	-moz-box-shadow: 0 0 1em #ffffff;
+	-webkit-box-shadow: 0 0 1em #ffffff;
+	box-shadow: 0 0 1em #ffffff;
+	
+}

@@ -1,15 +1,21 @@
 package fotolog
 
 import static org.springframework.http.HttpStatus.*
+import org.codehaus.groovy.grails.web.context.ServletContextHolder
+import org.codehaus.groovy.grails.web.mapping.LinkGenerator
 import fotolog.BaseController;
 import grails.transaction.Transactional
-import grails.plugin.springsecurity.annotation.Secured
+import grails.plugin.springsecurity.annotation.Secured 
 
 @Transactional(readOnly = true)
 class MidiaController extends BaseController{
 
     static allowedMethods = [save: "POST", update: "POST", delete: "DELETE"]
-
+	
+	def FileUploadService
+	// Inject link generator
+	LinkGenerator grailsLinkGenerator
+	
 	@Secured(["authentication.name=='admin'"])
 	def index(Integer max) {
 
@@ -32,31 +38,38 @@ class MidiaController extends BaseController{
 	
 	@Secured('permitAll') 
 	def listavideo() {
-		
-		def configuracoes = configuracaoParams
+				
 		def evento = Evento.get(Long.valueOf(params.filtrovideo ? params.filtrovideo : '0').longValue())
+		params.max = Math.min(1,10000)
 		
-		def resultado = Midia.createCriteria().list () {
+		def url = grailsLinkGenerator.resource(dir: '/' , absolute: true) + message(code: 'diretoriovideos.message') + File.separator
+		
+		def resultado = Midia.createCriteria().list (params) {
 			eq("evento" , evento)
 			order('dateCreated', 'asc')
 			order('evento', 'desc')
 			order('midia', 'asc') 
 		}
-		respond resultado, model:[midiaInstanceCount: resultado.size, eventoInstance: evento , filtrovideo:params.filtrovideo]
+		def total = resultado.totalCount ? resultado.totalCount : 0
+		respond resultado, model:[diretorio: url, midiaInstanceCount: total , eventoInstance: evento , filtrovideo:params.filtrovideo]
 	}
 	
 	@Secured('permitAll')
 	def listamusica() {
+		
 		def configuracoes = configuracaoParams
 		def evento = Evento.get(Long.valueOf(params.filtromusica ? params.filtromusica : '0').longValue())
 		
-		def resultado = Midia.createCriteria().list () {
+		def url = grailsLinkGenerator.resource(dir: '/' , absolute: true) + message(code: 'diretoriomusicas.message')
+				
+		def resultado = Midia.createCriteria().list (configuracoes) {
 			eq("evento" , evento)
 			order('dateCreated', 'asc')
 			order('evento', 'desc')
 			order('midia', 'asc')
 		}
-		respond resultado, model:[midiaInstanceCount: resultado.size, eventoInstance: evento , filtromusica:params.filtromusica]
+		def total = resultado.totalCount ? resultado.totalCount : 0
+		respond resultado, model:[diretorio: url, midiaInstanceCount: total, eventoInstance: evento , filtromusica:params.filtromusica]
 	
 	}
 	
@@ -78,10 +91,7 @@ class MidiaController extends BaseController{
 	@Secured(["authentication.name=='admin'"])
     def show(Midia midiaInstance) {
 		def configuracoes = configuracaoParams
-		def resultado = DadosMidia.createCriteria().list() {
-			eq("midia" , midiaInstance)
-		}
-        respond midiaInstance,model:[dadosMidiaInstance: resultado]
+		respond midiaInstance
     }
 
 	@Secured(["authentication.name=='admin'"])
@@ -98,43 +108,40 @@ class MidiaController extends BaseController{
             return
         }		
 		
-		//Imagem
-		if(midiaInstance.evento.tipomidia.id==1){
-			def f = request.getFile('arquivo')
-			if (!f.empty) {
-				def midia = fileUpload(f)
+		def f = request.getFile('arquivo')
+		def ret
+		
+		if (!f.empty) {
+			
+			//Imagem (Upload Pro Amazon S3
+			if(midiaInstance.evento.tipomidia.id==1){
+				def midia = FileUploadService.fileUpload(f , 'fotologlmdcm' , 'assets/')
 				midiaInstance.midia = midia
 			}
-		}
-		//Url Video
-		if(midiaInstance.evento.tipomidia.id==2){
-			midiaInstance.midia = params.video
-		}
-		//Musica
-		if(midiaInstance.evento.tipomidia.id==3){
-			def f = request.getFile('musica')
-			if (!f.empty) {
-				//upload musica
+			
+			//Video
+			if(midiaInstance.evento.tipomidia.id==2 || midiaInstance.evento.tipomidia.id==3){
 				
+				midiaInstance.extensao=FileUploadService.getExtension(f.getOriginalFilename())
+				midiaInstance.midia = FileUploadService.removeExtension(f.getOriginalFilename())
+				
+				if(midiaInstance.evento.tipomidia.id==2){
+					def dir = message(code: 'diretoriovideos.message') + File.separator + midiaInstance.evento.nome
+					ret = FileUploadService.uploadFile(f , f.getOriginalFilename() , dir)
+				}
+				if(midiaInstance.evento.tipomidia.id==3){
+					def dir = message(code: 'diretoriomusicas.message') + File.separator + midiaInstance.evento.nome
+					ret = FileUploadService.uploadFile(f , f.getOriginalFilename() , dir)					
+				}
 			}
 		}
 		
+		session["evento.id"] = midiaInstance.evento.id
 		midiaInstance.save flush:true
 		
 		if (midiaInstance.hasErrors()) {
 			respond midiaInstance.errors, view:'create'
 			return
-		}else{
-			//Insiro DadosMidia
-			if(params.altura && params.largura){
-						
-				def dadosMidiaInstance = new DadosMidia()
-				dadosMidiaInstance.altura = Long.valueOf(params.altura).longValue()
-				dadosMidiaInstance.largura = Long.valueOf(params.largura).longValue()
-				dadosMidiaInstance.midia=midiaInstance
-				dadosMidiaInstance.save flush:true
-				
-			}
 		}
 		
 		if(params.tipo=="create"){
@@ -154,10 +161,8 @@ class MidiaController extends BaseController{
 
 	@Secured(["authentication.name=='admin'"])
     def edit(Midia midiaInstance) {
-		def resultado = DadosMidia.createCriteria().list() {
-			eq("midia" , midiaInstance)
-		}
-        respond midiaInstance , model:[dadosMidiaInstance: resultado]
+		
+        respond midiaInstance
     }
 
     @Transactional
@@ -169,27 +174,42 @@ class MidiaController extends BaseController{
         }
 		
 		def f = request.getFile('arquivo')
+		def ret
+		
 		if (!f.empty) {
-			def deleteS3 = fileDelete(midiaInstance.midia)
-			def imagem = fileUpload(f)
-			midiaInstance.midia = imagem 
+			
+			//Imagem (Upload Pro Amazon S3
+			if(midiaInstance.evento.tipomidia.id==1){
+				def midia = FileUploadService.fileUpload(f , 'fotologlmdcm' , 'assets/')
+				midiaInstance.extensao=FileUploadService.getExtension(midia)
+				midiaInstance.midia = FileUploadService.removeExtension(midia)
+				
+			}
+			
+			//Video
+			if(midiaInstance.evento.tipomidia.id==2 || midiaInstance.evento.tipomidia.id==3){
+				
+				midiaInstance.extensao=FileUploadService.getExtension(f.getOriginalFilename())
+				midiaInstance.midia = FileUploadService.removeExtension(f.getOriginalFilename())
+				
+				if(midiaInstance.evento.tipomidia.id==2){
+					def dir = message(code: 'diretoriovideos.message') + File.separator + midiaInstance.evento.nome
+					ret = FileUploadService.uploadFile(f , f.getOriginalFilename() , dir)
+				}
+				if(midiaInstance.evento.tipomidia.id==3){
+					def dir = message(code: 'diretoriomusicas.message') + File.separator + midiaInstance.evento.nome
+					ret = FileUploadService.uploadFile(f , f.getOriginalFilename() , dir)
+				}
+			}
 		}
+
         midiaInstance.save flush:true
 
 		if (midiaInstance.hasErrors()) {
 			respond midiaInstance.errors, view:'edit'
 			return
-		}else{
-			
-				if(params.altura && params.largura){
-					
-					def dadosMidiaInstance = DadosMidia.get(Long.valueOf(params.dadosMidia.id).longValue())
-				   	dadosMidiaInstance.altura  = Long.valueOf(params.altura).longValue()
-					dadosMidiaInstance.largura = Long.valueOf(params.largura).longValue()
-					dadosMidiaInstance.save flush:true
-				}	
 		}
-		
+				
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.updated.message', args: [message(code: 'Midia.label', default: 'Midia'), midiaInstance.id])
@@ -208,12 +228,25 @@ class MidiaController extends BaseController{
             return
         }
 		
-		def midia = midiaInstance.midia
+		def midiaDeleted = new Midia()
+		midiaDeleted = midiaInstance
 
         midiaInstance.delete flush:true
 
 		if (!midiaInstance.hasErrors()) {
-			fileDelete(midia)
+			
+			if(midiaDeleted.evento.tipomidia.id==1){
+				FileUploadService.fileDelete(midiaDeleted?.midia + '.' + midiaDeleted?.extensao, 'fotologlmdcm' , 'assets/')
+			}
+			if(midiaDeleted.evento.tipomidia.id==2){
+				def dir = message(code: 'diretoriovideos.message') + File.separator + midiaInstance.evento.nome + File.separator + midiaDeleted?.midia + '.' + midiaDeleted?.extensao
+				def ret = FileUploadService.fileLocalDelete(dir)
+			}
+			if(midiaDeleted.evento.tipomidia.id==3){
+				def dir = message(code: 'diretoriomusicas.message') + File.separator + midiaInstance.evento.nome + File.separator + midiaDeleted?.midia + '.' + midiaDeleted?.extensao
+				def ret = FileUploadService.fileLocalDelete(dir)
+			}
+			
 		}
         request.withFormat {
             form multipartForm {

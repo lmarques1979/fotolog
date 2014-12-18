@@ -41,7 +41,7 @@ invokeTag('link','g',13,['class':("novo"),'action':("create")],2)
 printHtmlPart(6)
 createTagBody(2, {->
 printHtmlPart(7)
-invokeTag('select','g',16,['onchange':("this.form.submit()"),'noSelection':(['0':'Todos...']),'value':(filtroevento),'name':("filtroevento"),'optionValue':({formatDate(format: 'dd/MM/yyyy', date: it.data) + ' - ' + it.nome}),'optionKey':("id"),'from':(fotolog.Evento.list())],-1)
+invokeTag('select','g',16,['onchange':("this.form.submit()"),'noSelection':(['0':'Todos...']),'value':(filtroevento),'name':("filtroevento"),'optionValue':({it.tipomidia.descricao + ' - ' + it.nome}),'optionKey':("id"),'from':(fotolog.Evento.list())],-1)
 printHtmlPart(8)
 })
 invokeTag('form','g',17,['controller':("midia"),'action':("index")],2)
@@ -54,11 +54,17 @@ printHtmlPart(11)
 printHtmlPart(12)
 expressionOut.print(message(code: 'midia.midia.label', default: 'Nome'))
 printHtmlPart(13)
-expressionOut.print(message(code: 'tipomidia.label', default: 'Nome'))
+expressionOut.print(message(code: 'midia.url.label', default: 'Nome'))
 printHtmlPart(13)
 expressionOut.print(message(code: 'midia.evento.label', default: 'Nome'))
 printHtmlPart(13)
 expressionOut.print(message(code: 'midia.legenda.label', default: 'Nome'))
+printHtmlPart(13)
+expressionOut.print(message(code: 'midia.tipomidia.label', default: 'Nome'))
+printHtmlPart(13)
+expressionOut.print(message(code: 'midia.largura.label', default: 'Nome'))
+printHtmlPart(13)
+expressionOut.print(message(code: 'midia.altura.label', default: 'Nome'))
 printHtmlPart(14)
 loop:{
 int i = 0
@@ -68,42 +74,49 @@ expressionOut.print((i % 2) == 0 ? 'even' : 'odd')
 printHtmlPart(16)
 createTagBody(3, {->
 printHtmlPart(17)
-if(true && (midiaInstance.midia)) {
+if(true && (midiaInstance?.evento?.tipomidia?.id==1)) {
 printHtmlPart(18)
-invokeTag('image','asset',45,['height':(params.alturaimagensthumbs),'width':(params.larguraimagensthumbs),'src':(midiaInstance.midia),'title':(midiaInstance.legenda)],-1)
-printHtmlPart(19)
+invokeTag('image','asset',47,['src':(midiaInstance?.midia +'.'+midiaInstance?.extensao),'title':(midiaInstance.legenda ? midiaInstance.legenda : '')],-1)
+printHtmlPart(17)
 }
-else {
-printHtmlPart(20)
-invokeTag('image','asset',48,['height':(params.alturaimagensthumbs),'width':(params.larguraimagensthumbs),'src':("noimage.jpg")],-1)
-printHtmlPart(19)
+printHtmlPart(17)
+if(true && (midiaInstance?.evento?.tipomidia?.id==2 || midiaInstance?.evento?.tipomidia?.id==3)) {
+printHtmlPart(18)
+invokeTag('image','asset',50,['src':("editar.png"),'title':(midiaInstance.legenda ? midiaInstance.legenda : '')],-1)
+printHtmlPart(17)
 }
-printHtmlPart(21)
+printHtmlPart(19)
 })
-invokeTag('link','g',51,['action':("show"),'id':(midiaInstance.id)],3)
-printHtmlPart(22)
-expressionOut.print(midiaInstance?.tipomidia?.descricao)
-printHtmlPart(23)
+invokeTag('link','g',53,['action':("show"),'id':(midiaInstance.id)],3)
+printHtmlPart(20)
+expressionOut.print(midiaInstance?.url)
+printHtmlPart(21)
 expressionOut.print(midiaInstance?.evento?.nome)
 printHtmlPart(22)
 expressionOut.print(fieldValue(bean: midiaInstance, field: "legenda"))
-printHtmlPart(24)
+printHtmlPart(22)
+expressionOut.print(midiaInstance?.evento?.tipomidia?.descricao)
+printHtmlPart(21)
+expressionOut.print(midiaInstance?.largura ? midiaInstance?.largura : '')
+printHtmlPart(21)
+expressionOut.print(midiaInstance?.altura ? midiaInstance?.altura : '')
+printHtmlPart(23)
 i++
 }
 }
+printHtmlPart(24)
+invokeTag('paginate','g',73,['total':(midiaInstanceCount ?: 0),'params':(params)],-1)
 printHtmlPart(25)
-invokeTag('paginate','g',65,['total':(midiaInstanceCount ?: 0),'params':(params)],-1)
-printHtmlPart(26)
 })
-invokeTag('captureBody','sitemesh',68,[:],1)
-printHtmlPart(27)
+invokeTag('captureBody','sitemesh',76,[:],1)
+printHtmlPart(26)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1418330980000L
+public static final long LAST_MODIFIED = 1418927237000L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

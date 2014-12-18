@@ -32,18 +32,65 @@ invokeTag('captureHead','sitemesh',8,[:],1)
 printHtmlPart(3)
 createTagBody(1, {->
 printHtmlPart(4)
-invokeTag('message','g',10,['code':("default.link.skip.label"),'default':("Skip to content&hellip;")],-1)
+invokeTag('message','g',11,['code':("default.link.skip.label"),'default':("Skip to content&hellip;")],-1)
 printHtmlPart(5)
-})
-invokeTag('captureBody','sitemesh',18,[:],1)
+createTagBody(2, {->
 printHtmlPart(6)
+createTagBody(3, {->
+printHtmlPart(7)
+invokeTag('message','g',18,['code':("galeriamusica.label")],-1)
+printHtmlPart(8)
+invokeTag('select','g',18,['onchange':("this.form.submit()"),'noSelection':(['0':'Selecione um evento...']),'value':(filtromusica),'name':("filtromusica"),'optionValue':("nome"),'optionKey':("id"),'from':(fotolog.Evento.findAll("from Evento e where e.tipomidia.id=3"))],-1)
+printHtmlPart(6)
+})
+invokeTag('form','g',19,['controller':("midia"),'action':("listamusica")],3)
+printHtmlPart(9)
+})
+invokeTag('ifNotLoggedIn','sec',20,[:],2)
+printHtmlPart(10)
+if(true && (eventoInstance)) {
+printHtmlPart(11)
+expressionOut.print(eventoInstance.nome)
+printHtmlPart(12)
+}
+printHtmlPart(13)
+if(true && (midiaInstanceCount>0)) {
+printHtmlPart(14)
+loop:{
+int i = 0
+for( midiaInstance in (midiaInstanceList) ) {
+printHtmlPart(15)
+expressionOut.print(midiaInstance?.legenda)
+printHtmlPart(16)
+expressionOut.print(diretorio + File.separator + midiaInstance.evento.nome + File.separator + midiaInstance?.midia+'.'+midiaInstance?.extensao)
+printHtmlPart(17)
+expressionOut.print(message(code: 'midia.dowbrowsernotsupoortaudio.label'))
+printHtmlPart(18)
+createTagBody(4, {->
+printHtmlPart(19)
+invokeTag('image','asset',44,['src':("download.png"),'title':(message(code: 'midia.download.label', default: 'Download'))],-1)
+printHtmlPart(20)
+})
+invokeTag('link','g',45,['url':(diretorio + File.separator + midiaInstance.evento.nome + File.separator + midiaInstance?.midia+'.'+midiaInstance?.extensao)],4)
+printHtmlPart(21)
+i++
+}
+}
+printHtmlPart(22)
+}
+printHtmlPart(23)
+invokeTag('paginate','g',54,['total':(midiaInstanceCount ? midiaInstanceCount : 0),'params':(params)],-1)
+printHtmlPart(24)
+})
+invokeTag('captureBody','sitemesh',57,[:],1)
+printHtmlPart(25)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1418469998000L
+public static final long LAST_MODIFIED = 1418930894000L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

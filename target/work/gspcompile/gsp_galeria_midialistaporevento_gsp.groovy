@@ -52,80 +52,77 @@ createTagBody(3, {->
 printHtmlPart(7)
 invokeTag('message','g',23,['code':("eventoscadastrados.label")],-1)
 printHtmlPart(8)
-invokeTag('select','g',23,['onchange':("this.form.submit()"),'noSelection':(['0':'Selecione um evento...']),'value':(filtroevento),'name':("filtroevento"),'optionValue':({formatDate(format: 'dd/MM/yyyy', date: it.data) + ' - ' + it.nome}),'optionKey':("id"),'from':(fotolog.Evento.list())],-1)
+invokeTag('select','g',23,['onchange':("this.form.submit()"),'noSelection':(['0':'Selecione um evento...']),'value':(filtroevento),'name':("filtroevento"),'optionValue':({formatDate(format: 'dd/MM/yyyy', date: it.data) + ' - ' + it.nome}),'optionKey':("id"),'from':(fotolog.Evento.findAll("from Evento e where e.tipomidia.id=1"))],-1)
 printHtmlPart(6)
 })
 invokeTag('form','g',24,['controller':("midia"),'action':("listaporevento")],3)
 printHtmlPart(9)
 })
 invokeTag('ifNotLoggedIn','sec',25,[:],2)
-printHtmlPart(9)
-createClosureForHtmlPart(10, 2)
-invokeTag('ifLoggedIn','sec',28,[:],2)
-printHtmlPart(11)
+printHtmlPart(10)
 if(true && (eventoInstance)) {
-printHtmlPart(12)
+printHtmlPart(11)
 expressionOut.print(eventoInstance.nome)
-printHtmlPart(13)
+printHtmlPart(12)
 expressionOut.print(midiaInstanceCount)
-printHtmlPart(14)
+printHtmlPart(13)
 }
-printHtmlPart(15)
+printHtmlPart(14)
 if(true && (midiaInstanceCount>0)) {
-printHtmlPart(16)
+printHtmlPart(15)
 loop:{
 int i = 0
 for( midiaInstance in (midiaInstanceList) ) {
+printHtmlPart(16)
+invokeTag('image','asset',54,['class':("fotogrande"),'data-fotoid':(midiaInstance?.id),'data-legenda':(midiaInstance?.legenda),'u':("image"),'src':(midiaInstance?.midia+'.'+midiaInstance?.extensao)],-1)
 printHtmlPart(17)
-invokeTag('image','asset',58,['class':("fotogrande"),'data-fotoid':(midiaInstance?.id),'data-legenda':(midiaInstance?.legenda),'u':("image"),'src':(midiaInstance?.midia)],-1)
+invokeTag('image','asset',55,['u':("thumb"),'src':(midiaInstance?.midia+'.'+midiaInstance?.extensao)],-1)
 printHtmlPart(18)
-invokeTag('image','asset',59,['u':("thumb"),'src':(midiaInstance?.midia)],-1)
-printHtmlPart(19)
 i++
 }
 }
+printHtmlPart(19)
+invokeTag('image','asset',88,['u':("thumb"),'id':("playButton"),'src':("play.png"),'title':(message(code: 'playslide.label'))],-1)
 printHtmlPart(20)
-invokeTag('image','asset',92,['u':("thumb"),'id':("playButton"),'src':("play.png"),'title':(message(code: 'playslide.label'))],-1)
+invokeTag('image','asset',89,['u':("thumb"),'id':("pauseButton"),'src':("pause.png"),'title':(message(code: 'pauseslide.label'))],-1)
 printHtmlPart(21)
-invokeTag('image','asset',93,['u':("thumb"),'id':("pauseButton"),'src':("pause.png"),'title':(message(code: 'pauseslide.label'))],-1)
+invokeTag('image','asset',92,['class':("enviarmensagem"),'src':("enviarmensagem.png"),'title':(message(code: 'mensagem.enviar.label'))],-1)
 printHtmlPart(22)
-invokeTag('image','asset',96,['class':("enviarmensagem"),'src':("enviarmensagem.png"),'title':(message(code: 'mensagem.enviar.label'))],-1)
-printHtmlPart(23)
 createTagBody(3, {->
-printHtmlPart(24)
-invokeTag('hiddenField','g',103,['class':("fotoid"),'name':("midia.id"),'value':("")],-1)
-printHtmlPart(25)
+printHtmlPart(14)
+invokeTag('hiddenField','g',99,['class':("fotoid"),'name':("midia.id"),'value':("")],-1)
+printHtmlPart(23)
 expressionOut.print(message(code: 'mensagem.enviomensagemth.label'))
-printHtmlPart(26)
+printHtmlPart(24)
 expressionOut.print(message(code: 'mensagem.remetente.label'))
-printHtmlPart(27)
-invokeTag('textField','g',113,['name':("remetente"),'required':(""),'value':(mensagemInstance?.remetente)],-1)
-printHtmlPart(28)
+printHtmlPart(25)
+invokeTag('textField','g',109,['name':("remetente"),'required':(""),'value':(mensagemInstance?.remetente)],-1)
+printHtmlPart(26)
 expressionOut.print(message(code: 'mensagem.emailremetente.label'))
+printHtmlPart(25)
+invokeTag('textField','g',113,['name':("emailremetente"),'required':(""),'value':("")],-1)
 printHtmlPart(27)
-invokeTag('textField','g',117,['name':("emailremetente"),'required':(""),'value':("")],-1)
-printHtmlPart(29)
 expressionOut.print(message(code: 'mensagem.mensagem.label'))
-printHtmlPart(27)
-invokeTag('textArea','g',121,['required':(""),'name':("mensagem"),'rows':("5"),'cols':("20")],-1)
+printHtmlPart(25)
+invokeTag('textArea','g',117,['required':(""),'name':("mensagem"),'rows':("5"),'cols':("20")],-1)
+printHtmlPart(28)
+invokeTag('submitButton','g',123,['name':("create"),'class':("save"),'value':(message(code: 'default.button.enviar.label', default: 'Create'))],-1)
+printHtmlPart(29)
+})
+invokeTag('form','g',129,['class':("enviomsg"),'controller':("mensagem"),'action':("enviamensagem")],3)
 printHtmlPart(30)
-invokeTag('submitButton','g',127,['name':("create"),'class':("save"),'value':(message(code: 'default.button.enviar.label', default: 'Create'))],-1)
+}
 printHtmlPart(31)
 })
-invokeTag('form','g',133,['class':("enviomsg"),'controller':("mensagem"),'action':("enviamensagem")],3)
+invokeTag('captureBody','sitemesh',140,[:],1)
 printHtmlPart(32)
-}
-printHtmlPart(33)
-})
-invokeTag('captureBody','sitemesh',144,[:],1)
-printHtmlPart(34)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1418469795000L
+public static final long LAST_MODIFIED = 1418931227000L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

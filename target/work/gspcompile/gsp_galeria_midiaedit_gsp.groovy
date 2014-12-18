@@ -78,7 +78,7 @@ createTagBody(2, {->
 printHtmlPart(18)
 invokeTag('hiddenField','g',32,['name':("version"),'value':(midiaInstance?.version)],-1)
 printHtmlPart(19)
-invokeTag('render','g',35,['template':("formEdit")],-1)
+invokeTag('render','g',35,['template':("form")],-1)
 printHtmlPart(20)
 invokeTag('actionSubmit','g',38,['class':("save"),'action':("update"),'value':(message(code: 'default.button.update.label', default: 'Update'))],-1)
 printHtmlPart(21)
@@ -94,7 +94,7 @@ protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1418559707000L
+public static final long LAST_MODIFIED = 1418828068000L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

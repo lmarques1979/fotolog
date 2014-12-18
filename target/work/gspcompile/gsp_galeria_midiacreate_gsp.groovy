@@ -70,7 +70,7 @@ createTagBody(2, {->
 printHtmlPart(17)
 invokeTag('hiddenField','g',29,['name':("tipo"),'value':("create")],-1)
 printHtmlPart(18)
-invokeTag('render','g',31,['template':("formCreate")],-1)
+invokeTag('render','g',31,['template':("form")],-1)
 printHtmlPart(19)
 invokeTag('submitButton','g',34,['name':("create"),'class':("save"),'value':(message(code: 'default.button.create.label', default: 'Create'))],-1)
 printHtmlPart(20)
@@ -86,7 +86,7 @@ protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1418558357000L
+public static final long LAST_MODIFIED = 1418828057000L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

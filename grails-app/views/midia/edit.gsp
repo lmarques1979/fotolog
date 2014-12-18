@@ -32,7 +32,7 @@
 				<g:hiddenField name="version" value="${midiaInstance?.version}" />
 				
 				<fieldset class="form">
-					<g:render template="formEdit"/>
+					<g:render template="form"/>
 				</fieldset>
 				<fieldset class="buttons">
 					<g:actionSubmit class="save" action="update" value="${message(code: 'default.button.update.label', default: 'Update')}" />

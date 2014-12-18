@@ -2,28 +2,36 @@ package fotolog
 
 import java.util.Date;
 
+import org.codehaus.groovy.grails.web.context.ServletContextHolder
+
 class Midia {
 	
-	String midia
-	Evento evento
-	String legenda
-	Date dateCreated
-	Date lastUpdated
+	String  midia
+	String  extensao
+	Evento  evento
+	String  legenda
+	String  url
+	String	altura
+	String 	largura
+	Date    dateCreated
+	Date    lastUpdated
+	
 	
 	static hasMany = [mensagens:Mensagem]
-	static hasOne = [dadosmidia:DadosMidia]
 	
-	
-    static constraints = {
-		midia(nullable:false,blank:false)
+	static constraints = {
+		midia(nullable:true , blank:true)
 		evento(nullable:false)
-		legenda(nullable:true) 
-		dadosmidia(nullable:true)
+		legenda(nullable:true , blank:true)
+		altura(nullable:true , blank:true)
+		largura(nullable:true , blank:true) 
+		url(nullable:true , blank:true) 
+		extensao(nullable:true , blank:true)
+		
 	}
 	
 	static mapping = {
 		mensagens cascade: 'all-delete-orphan'
-		dadosmidia cascade: 'all-delete-orphan'
 		autoTimestamp true
 	}
 }

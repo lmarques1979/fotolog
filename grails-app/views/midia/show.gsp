@@ -27,16 +27,32 @@
 					<span id="nome-label" class="property-label"><g:message code="midia.imagem.label" default="Nome" /></span>
 					
 						<span class="property-value" aria-labelledby="nome-label">
-							<g:if test="${midiaInstance.midia}">
-									<asset:image height="${params.alturaimagensthumbs}" width="${params.larguraimagensthumbs}" src="${midiaInstance.midia}" title="${midiaInstance.legenda}"/>
+							<g:if test="${midiaInstance.evento.tipomidia.id==1}">
+								<g:if test="${midiaInstance.midia}">
+										<asset:image height="${params.alturaimagensthumbs}" width="${params.larguraimagensthumbs}" src="${midiaInstance.midia+'.'+midiaInstance.extensao}" title="${midiaInstance.legenda}"/>
+								</g:if>
+								<g:else>
+									<asset:image height="${params.alturaimagensthumbs}" width="${params.larguraimagensthumbs}" src="noimage.jpg" />
+								</g:else>
 							</g:if>
-							<g:else>
-								<asset:image height="${params.alturaimagensthumbs}" width="${params.larguraimagensthumbs}" src="noimage.jpg" />
-							</g:else>
-						
+							<g:if test="${midiaInstance.evento.tipomidia.id==2 || midiaInstance.evento.tipomidia.id==3}">
+								<g:if test="${midiaInstance.midia}">
+										${midiaInstance.midia}
+								</g:if>
+								
+							</g:if>
 						</span>
 					
 				</li>
+				</g:if>
+				
+				<g:if test="${midiaInstance?.url}">
+					<li class="fieldcontain">
+						<span id="evento-label" class="property-label"><g:message code="midia.url.label" default="Evento" /></span>
+						
+							<span class="property-value" aria-labelledby="evento-label">${midiaInstance?.url}</span>
+						
+					</li>
 				</g:if>
 				
 				<g:if test="${midiaInstance?.evento}">
@@ -57,20 +73,20 @@
 				</li>
 				</g:if>
 			
-				<g:if test="${dadosMidiaInstance}">
+				<g:if test="${midiaInstance?.largura}">
 				<li class="fieldcontain">
 					<span id="evento-label" class="property-label"><g:message code="midia.largura.label" default="Evento" /></span>
 					
-						<span class="property-value" aria-labelledby="evento-label">${dadosMidiaInstance[0].largura}</span>
+						<span class="property-value" aria-labelledby="evento-label">${midiaInstance?.largura}</span>
 					
 				</li>
 				</g:if>
 				
-				<g:if test="${dadosMidiaInstance}">
+				<g:if test="${midiaInstance?.altura}">
 				<li class="fieldcontain">
 					<span id="evento-label" class="property-label"><g:message code="midia.altura.label" default="Evento" /></span>
 					
-						<span class="property-value" aria-labelledby="evento-label">${dadosMidiaInstance[0].altura}</span>
+						<span class="property-value" aria-labelledby="evento-label">${midiaInstance?.altura}</span>
 					
 				</li>
 				</g:if>

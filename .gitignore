@@ -6,6 +6,8 @@
 stacktrace.log
 /grails-app/conf/Config.groovy
 *.war
+*.mp3
+*.mp4
 /*.zip
 /plugin.xml
 /*.log

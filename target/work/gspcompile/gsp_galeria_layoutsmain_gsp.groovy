@@ -69,63 +69,68 @@ invokeTag('message','g',32,['code':("midia.label")],-1)
 invokeTag('link','g',32,['class':("midia"),'controller':("Midia"),'action':("index")],4)
 printHtmlPart(14)
 createTagBody(4, {->
-invokeTag('message','g',33,['code':("mensagemmoderar.label")],-1)
+invokeTag('message','g',33,['code':("extensoes.label")],-1)
 })
-invokeTag('link','g',33,['class':("moderar"),'controller':("Mensagem"),'action':("moderar")],4)
+invokeTag('link','g',33,['class':("extensoes"),'controller':("ExtensoesPermitidas"),'action':("index")],4)
 printHtmlPart(14)
 createTagBody(4, {->
-invokeTag('message','g',34,['code':("mensagens.label")],-1)
+invokeTag('message','g',34,['code':("mensagemmoderar.label")],-1)
 })
-invokeTag('link','g',34,['class':("mensagem"),'controller':("Mensagem"),'action':("index")],4)
+invokeTag('link','g',34,['class':("moderar"),'controller':("Mensagem"),'action':("moderar")],4)
 printHtmlPart(14)
 createTagBody(4, {->
-invokeTag('message','g',35,['code':("configuracao.label")],-1)
+invokeTag('message','g',35,['code':("mensagens.label")],-1)
 })
-invokeTag('link','g',35,['class':("configuracoes"),'controller':("Configuracao"),'action':("index")],4)
+invokeTag('link','g',35,['class':("mensagem"),'controller':("Mensagem"),'action':("index")],4)
+printHtmlPart(14)
+createTagBody(4, {->
+invokeTag('message','g',36,['code':("configuracao.label")],-1)
+})
+invokeTag('link','g',36,['class':("configuracoes"),'controller':("Configuracao"),'action':("index")],4)
 printHtmlPart(15)
 }
 printHtmlPart(10)
 })
-invokeTag('ifLoggedIn','sec',39,[:],2)
+invokeTag('ifLoggedIn','sec',40,[:],2)
 printHtmlPart(10)
 createTagBody(2, {->
 printHtmlPart(11)
 createTagBody(3, {->
-invokeTag('image','asset',41,['src':("admin.png")],-1)
+invokeTag('image','asset',42,['src':("admin.png")],-1)
 })
-invokeTag('link','g',41,['class':("login"),'controller':("login"),'action':("auth")],3)
+invokeTag('link','g',42,['class':("login"),'controller':("login"),'action':("auth")],3)
 printHtmlPart(10)
 })
-invokeTag('ifNotLoggedIn','sec',42,[:],2)
+invokeTag('ifNotLoggedIn','sec',43,[:],2)
 printHtmlPart(16)
 createTagBody(2, {->
 printHtmlPart(17)
 createTagBody(3, {->
-invokeTag('message','g',49,['code':("imagem.label")],-1)
+invokeTag('message','g',50,['code':("imagem.label")],-1)
 })
-invokeTag('link','g',49,['class':("imagem"),'controller':("midia"),'action':("listaporevento")],3)
+invokeTag('link','g',50,['class':("imagem"),'controller':("midia"),'action':("listaporevento")],3)
 printHtmlPart(18)
 createTagBody(3, {->
-invokeTag('message','g',50,['code':("video.label")],-1)
+invokeTag('message','g',51,['code':("video.label")],-1)
 })
-invokeTag('link','g',50,['class':("video"),'controller':("midia"),'action':("listavideo")],3)
+invokeTag('link','g',51,['class':("video"),'controller':("midia"),'action':("listavideo")],3)
 printHtmlPart(18)
 createTagBody(3, {->
-invokeTag('message','g',51,['code':("musica.label")],-1)
+invokeTag('message','g',52,['code':("musica.label")],-1)
 })
-invokeTag('link','g',51,['class':("musica"),'controller':("midia"),'action':("listamusica")],3)
+invokeTag('link','g',52,['class':("musica"),'controller':("midia"),'action':("listamusica")],3)
 printHtmlPart(19)
 })
-invokeTag('ifNotLoggedIn','sec',55,[:],2)
+invokeTag('ifNotLoggedIn','sec',56,[:],2)
 printHtmlPart(20)
-invokeTag('layoutBody','g',59,[:],-1)
+invokeTag('layoutBody','g',60,[:],-1)
 printHtmlPart(21)
-invokeTag('message','g',65,['code':("titulopagina.label")],-1)
+invokeTag('message','g',66,['code':("titulopagina.label")],-1)
 printHtmlPart(22)
-invokeTag('message','g',67,['code':("copyrigth.label")],-1)
+invokeTag('message','g',68,['code':("copyrigth.label")],-1)
 printHtmlPart(23)
 })
-invokeTag('captureBody','sitemesh',72,[:],1)
+invokeTag('captureBody','sitemesh',73,[:],1)
 printHtmlPart(24)
 }
 public static final Map JSP_TAGS = new HashMap()
@@ -133,7 +138,7 @@ protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1418493461000L
+public static final long LAST_MODIFIED = 1418746406000L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'
