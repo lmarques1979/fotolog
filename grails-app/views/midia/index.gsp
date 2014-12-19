@@ -44,7 +44,7 @@
 					
 						<td><g:link action="show" id="${midiaInstance.id}">
 							<g:if test="${midiaInstance?.evento?.tipomidia?.id==1}">
-								<asset:image src="${midiaInstance?.midia +'.'+midiaInstance?.extensao}" title="${midiaInstance.legenda ? midiaInstance.legenda : ''}"/>
+								<asset:image height="${params.alturaimagensthumbs}" width="${params.larguraimagensthumbs}" src="${midiaInstance?.midia +'.'+midiaInstance?.extensao}" title="${midiaInstance.legenda ? midiaInstance.legenda : ''}"/>
 							</g:if>
 							<g:if test="${midiaInstance?.evento?.tipomidia?.id==2 || midiaInstance?.evento?.tipomidia?.id==3}">
 								<asset:image src="editar.png" title="${midiaInstance.legenda ? midiaInstance.legenda : ''}"/>

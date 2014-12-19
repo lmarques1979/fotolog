@@ -29,7 +29,7 @@
 						<span class="property-value" aria-labelledby="nome-label">
 							<g:if test="${midiaInstance.evento.tipomidia.id==1}">
 								<g:if test="${midiaInstance.midia}">
-										<asset:image height="${params.alturaimagensthumbs}" width="${params.larguraimagensthumbs}" src="${midiaInstance.midia+'.'+midiaInstance.extensao}" title="${midiaInstance.legenda}"/>
+										<asset:image height="${params.alturaimagensthumbs}" width="${params.larguraimagensthumbs}" src="${midiaInstance.midia+'.'+midiaInstance.extensao}" title="${midiaInstance.legenda ? midiaInstance.legenda : '' }"/>
 								</g:if>
 								<g:else>
 									<asset:image height="${params.alturaimagensthumbs}" width="${params.larguraimagensthumbs}" src="noimage.jpg" />

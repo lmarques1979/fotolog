@@ -60,7 +60,7 @@ if(true && (midiaInstance.evento.tipomidia.id==1)) {
 printHtmlPart(13)
 if(true && (midiaInstance.midia)) {
 printHtmlPart(14)
-invokeTag('image','asset',32,['height':(params.alturaimagensthumbs),'width':(params.larguraimagensthumbs),'src':(midiaInstance.midia+'.'+midiaInstance.extensao),'title':(midiaInstance.legenda)],-1)
+invokeTag('image','asset',32,['height':(params.alturaimagensthumbs),'width':(params.larguraimagensthumbs),'src':(midiaInstance.midia+'.'+midiaInstance.extensao),'title':(midiaInstance.legenda ? midiaInstance.legenda : '')],-1)
 printHtmlPart(13)
 }
 else {
@@ -147,7 +147,7 @@ protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1418927318000L
+public static final long LAST_MODIFIED = 1418949899000L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

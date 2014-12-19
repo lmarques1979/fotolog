@@ -76,7 +76,7 @@ createTagBody(3, {->
 printHtmlPart(17)
 if(true && (midiaInstance?.evento?.tipomidia?.id==1)) {
 printHtmlPart(18)
-invokeTag('image','asset',47,['src':(midiaInstance?.midia +'.'+midiaInstance?.extensao),'title':(midiaInstance.legenda ? midiaInstance.legenda : '')],-1)
+invokeTag('image','asset',47,['height':(params.alturaimagensthumbs),'width':(params.larguraimagensthumbs),'src':(midiaInstance?.midia +'.'+midiaInstance?.extensao),'title':(midiaInstance.legenda ? midiaInstance.legenda : '')],-1)
 printHtmlPart(17)
 }
 printHtmlPart(17)
@@ -116,7 +116,7 @@ protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1418927237000L
+public static final long LAST_MODIFIED = 1418949719000L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'
